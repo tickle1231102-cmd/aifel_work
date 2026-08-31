@@ -1,4 +1,4 @@
-name: Sync Blog - MD to HTML
+name: Sync Blog to Jekyll (blog_jack)
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
       - main
     paths:
       - 'blog/**/*.md'
+      - 'scripts/sync-to-jekyll.py'
       - '.github/workflows/sync-blog.yml'
-      - 'scripts/md-to-html.py'
   workflow_dispatch:
 
 jobs:
@@ -16,47 +16,37 @@ jobs:
 
     steps:
       - name: Checkout aifel_work
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
-      - name: Install dependencies
+      # blog_jack은 별도 저장소이므로, PAT_TOKEN 시크릿으로 clone/push 합니다.
+      # 설정 방법은 BLOG_GUIDE.md 참고: Settings → Secrets and variables → Actions
+      # → New repository secret → 이름: PAT_TOKEN, 값: repo 권한을 가진 GitHub PAT
+      - name: Clone blog_jack
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          pip install markdown pygments
+          git clone https://x-access-token:${PAT_TOKEN}@github.com/tickle1231102-cmd/blog_jack.git blog_jack_repo
 
-      - name: Run MD to HTML conversion
+      - name: Sync markdown posts into blog_jack/_posts
         run: |
-          python scripts/md-to-html.py
+          BLOG_JACK_PATH="$GITHUB_WORKSPACE/blog_jack_repo" python3 scripts/sync-to-jekyll.py
 
       - name: Commit and push to blog_jack
+        working-directory: blog_jack_repo
         run: |
-          cd blog_jack
-          git config --global user.name "Blog Jack Bot"
-          git config --global user.email "bot@blogjack.local"
+          git config user.name "Blog Jack Bot"
+          git config user.email "bot@blogjack.local"
 
-          # 변경사항 확인
           if [ -n "$(git status --porcelain)" ]; then
-            git add .
-            git commit -m "Auto sync from aifel_work: $(date +'%Y-%m-%d %H:%M:%S')"
+            git add _posts
+            git commit -m "Auto sync posts from aifel_work: $(date +'%Y-%m-%d %H:%M:%S')"
             git push origin main
-            echo "✅ Blog Jack 동기화 완료"
+            echo "✅ blog_jack 동기화 완료 — Jekyll(GitHub Pages)이 자동으로 빌드합니다"
           else
-            echo "ℹ️ 변경사항 없음"
+            echo "ℹ️ 변경된 글이 없습니다"
           fi
-        env:
-          GIT_AUTHOR_NAME: Blog Jack Bot
-          GIT_AUTHOR_EMAIL: bot@blogjack.local
-          GIT_COMMITTER_NAME: Blog Jack Bot
-          GIT_COMMITTER_EMAIL: bot@blogjack.local
-
-      - name: Update sync timestamp
-        run: |
-          echo "마지막 동기화: $(date +'%Y-%m-%d %H:%M:%S')" > sync-timestamp.txt
-          git add sync-timestamp.txt
-          git commit -m "Update sync timestamp" || true
-          git push origin main || true

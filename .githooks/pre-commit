@@ -1,5 +1,5 @@
 #!/bin/bash
-# Pre-commit hook: 마크다운이 변경되면 자동으로 HTML로 변환
+# Pre-commit hook: 마크다운이 변경되면 자동으로 blog_jack(Jekyll)의 _posts/로 동기화
 
 # 색상
 GREEN='\033[0;32m'
@@ -11,17 +11,12 @@ echo -e "${BLUE}🔄 마크다운 파일 확인 중...${NC}"
 
 # blog 디렉토리의 마크다운 파일 변경 확인
 if git diff --cached --name-only | grep -q "blog/.*\.md$"; then
-    echo -e "${YELLOW}📝 마크다운 파일이 수정되었습니다. HTML로 변환 중...${NC}"
+    echo -e "${YELLOW}📝 마크다운 파일이 수정되었습니다. Jekyll _posts/로 동기화 중...${NC}"
 
-    # Python 스크립트 실행
-    python3 scripts/md-to-html.py
+    python3 scripts/sync-to-jekyll.py
 
-    # blog_jack 디렉토리의 HTML 파일을 git에 추가
-    if [ -d "blog_jack" ]; then
-        git add blog_jack/*.html
-        git add blog_jack/metadata.json
-        echo -e "${GREEN}✅ HTML 파일이 커밋에 추가되었습니다${NC}"
-    fi
+    echo -e "${GREEN}✅ blog_jack/_posts/ 로 동기화되었습니다${NC}"
+    echo -e "${BLUE}ℹ️  blog_jack 저장소에서 직접 git add/commit/push 해주세요${NC}"
 else
     echo -e "${GREEN}ℹ️ 마크다운 변경 없음${NC}"
 fi
