@@ -37,45 +37,51 @@ def read_frontmatter(content):
 
     return metadata, markdown_content
 
+def strip_duplicate_title(content, title):
+    """마크다운 본문 맨 앞의 '# 제목'이 프론트매터 title과 같으면 제거 (중복 방지)"""
+    pattern = r'^\s*<h1[^>]*>\s*' + re.escape(title) + r'\s*</h1>\s*'
+    return re.sub(pattern, '', content, count=1, flags=re.IGNORECASE)
+
+
 def create_html_template(title, content, metadata):
-    """HTML 템플릿 생성"""
+    """HTML 템플릿 생성 - 심플하고 읽기 좋은 미니멀 디자인"""
     date = metadata.get('date', datetime.now().strftime('%Y-%m-%d'))
     category = metadata.get('category', 'Learning')
     tags = metadata.get('tags', '').strip('[]').split(',')
     tags = [tag.strip().strip('"\'') for tag in tags if tag.strip()]
     author = metadata.get('author', 'tickle1231102')
 
-    tags_html = ''.join([f'<span class="tag">{tag}</span>' for tag in tags])
+    content = strip_duplicate_title(content, title)
+
+    tags_html = ''.join([f'<span class="tag">#{tag}</span>' for tag in tags])
 
     html = f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title} | Blog Jack</title>
-    <link rel="stylesheet" href="../styles/main.css">
-    <link rel="stylesheet" href="../styles/highlight.css">
+    <title>{title} · Blog Jack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
     <nav class="navbar">
-        <div class="container">
-            <div class="logo"><a href="/">Blog Jack</a></div>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/posts">Posts</a></li>
-                <li><a href="/categories">Categories</a></li>
-            </ul>
+        <div class="wrap">
+            <a class="logo" href="index.html">Blog Jack</a>
         </div>
     </nav>
 
-    <main class="container">
+    <main class="wrap">
         <article class="post">
             <header class="post-header">
+                <p class="category">{category}</p>
                 <h1>{title}</h1>
                 <div class="meta">
-                    <span class="date">📅 {date}</span>
-                    <span class="category">📂 {category}</span>
-                    <span class="author">✍️ {author}</span>
+                    <span>{date}</span>
+                    <span>·</span>
+                    <span>{author}</span>
                 </div>
                 <div class="tags">
                     {tags_html}
@@ -87,23 +93,14 @@ def create_html_template(title, content, metadata):
             </div>
 
             <footer class="post-footer">
-                <p>이 포스트는 <a href="https://github.com/tickle1231102-cmd/aifel_work">aifel_work</a>에서 작성되고 자동으로 동기화됩니다.</p>
+                <p>이 글은 <a href="https://github.com/tickle1231102-cmd/aifel_work" target="_blank" rel="noopener">aifel_work</a>에서 작성되어 자동으로 동기화되었습니다.</p>
             </footer>
         </article>
-
-        <aside class="sidebar">
-            <div class="widget">
-                <h3>최근 포스트</h3>
-                <ul id="recent-posts"></ul>
-            </div>
-        </aside>
     </main>
 
     <footer class="site-footer">
-        <p>&copy; 2026 Blog Jack. All rights reserved.</p>
+        <p>&copy; 2026 Blog Jack</p>
     </footer>
-
-    <script src="../scripts/main.js"></script>
 </body>
 </html>"""
 
