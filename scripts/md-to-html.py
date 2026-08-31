@@ -107,7 +107,7 @@ def create_html_template(title, content, metadata):
     return html
 
 def convert_md_to_html(md_file_path, output_dir):
-    """마크다운 파일을 HTML로 변환"""
+    """마크다운 파일을 HTML로 변환. 성공 시 목록 페이지용 메타데이터 dict, 실패 시 None 반환"""
     try:
         # 마크다운 파일 읽기
         with open(md_file_path, 'r', encoding='utf-8') as f:
@@ -140,11 +140,110 @@ def convert_md_to_html(md_file_path, output_dir):
             f.write(full_html)
 
         print(f"✅ 변환 완료: {md_file_path.name} → {output_path.name}")
-        return True
+
+        tags = metadata.get('tags', '').strip('[]').split(',')
+        tags = [t.strip().strip('"\'') for t in tags if t.strip()]
+
+        return {
+            'title': title,
+            'date': metadata.get('date', ''),
+            'category': metadata.get('category', 'Learning'),
+            'tags': tags,
+            'author': metadata.get('author', ''),
+            'filename': output_filename,
+        }
 
     except Exception as e:
         print(f"❌ 오류: {md_file_path.name} - {str(e)}")
-        return False
+        return None
+
+
+def build_index_html(posts, blog_jack_path):
+    """카테고리 목차 + 전체 글 목록을 담은 홈페이지(index.html) 생성"""
+    # 최신순 정렬 (날짜 없는 값은 뒤로)
+    posts_sorted = sorted(posts, key=lambda p: p.get('date') or '', reverse=True)
+
+    # 카테고리별로 묶기 (등장 순서 유지)
+    categories = []
+    by_category = {}
+    for p in posts_sorted:
+        cat = p['category']
+        if cat not in by_category:
+            by_category[cat] = []
+            categories.append(cat)
+        by_category[cat].append(p)
+
+    def slugify(text):
+        return re.sub(r'[^a-z0-9가-힣]+', '-', text.lower()).strip('-')
+
+    # 목차 (카테고리 앵커 링크)
+    toc_items = ''.join(
+        f'<li><a href="#{slugify(cat)}">{cat}</a> <span class="count">{len(by_category[cat])}</span></li>'
+        for cat in categories
+    )
+
+    # 카테고리별 섹션 + 글 목록
+    sections_html = ''
+    for cat in categories:
+        items = ''.join(f'''
+                <li class="post-item">
+                    <a class="post-item-title" href="{p['filename']}">{p['title']}</a>
+                    <div class="post-item-meta">
+                        <span>{p['date']}</span>
+                        {''.join(f'<span class="tag">#{t}</span>' for t in p['tags'])}
+                    </div>
+                </li>''' for p in by_category[cat])
+
+        sections_html += f'''
+        <section class="category-section" id="{slugify(cat)}">
+            <h2 class="category-title">{cat} <span class="count">{len(by_category[cat])}</span></h2>
+            <ul class="post-list">{items}
+            </ul>
+        </section>'''
+
+    html = f"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Jack · 학습 기록</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="wrap">
+            <a class="logo" href="index.html">Blog Jack</a>
+        </div>
+    </nav>
+
+    <main class="wrap">
+        <header class="home-header">
+            <h1>학습 기록</h1>
+            <p class="home-sub">aifel_work에서 작성하고 자동으로 동기화되는 학습 블로그입니다. 총 {len(posts_sorted)}개의 글이 있습니다.</p>
+        </header>
+
+        <nav class="toc">
+            <h3>카테고리</h3>
+            <ul>{toc_items}</ul>
+        </nav>
+
+        {sections_html}
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Blog Jack</p>
+    </footer>
+</body>
+</html>"""
+
+    index_path = Path(blog_jack_path) / 'index.html'
+    with open(index_path, 'w', encoding='utf-8') as f:
+        f.write(html)
+
+    print(f"🏠 홈페이지 생성 완료: {index_path.name}")
 
 def sync_to_blog_jack(blog_dir, blog_jack_dir):
     """변환된 HTML을 blog_jack으로 동기화"""
@@ -164,12 +263,17 @@ def sync_to_blog_jack(blog_dir, blog_jack_dir):
 
     print(f"\n🔄 {len(md_files)}개의 마크다운 파일을 처리 중입니다...\n")
 
-    success_count = 0
+    posts = []
     for md_file in md_files:
-        if convert_md_to_html(md_file, blog_jack_path):
-            success_count += 1
+        post_meta = convert_md_to_html(md_file, blog_jack_path)
+        if post_meta:
+            posts.append(post_meta)
 
+    success_count = len(posts)
     print(f"\n✨ 완료: {success_count}/{len(md_files)}개 파일 변환")
+
+    # 카테고리/목차/글 목록을 담은 홈페이지 생성
+    build_index_html(posts, blog_jack_path)
 
     # 변환 결과 메타데이터 생성
     metadata = {
