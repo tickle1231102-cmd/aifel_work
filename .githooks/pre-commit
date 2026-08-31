@@ -1,0 +1,29 @@
+#!/bin/bash
+# Pre-commit hook: 마크다운이 변경되면 자동으로 HTML로 변환
+
+# 색상
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+echo -e "${BLUE}🔄 마크다운 파일 확인 중...${NC}"
+
+# blog 디렉토리의 마크다운 파일 변경 확인
+if git diff --cached --name-only | grep -q "blog/.*\.md$"; then
+    echo -e "${YELLOW}📝 마크다운 파일이 수정되었습니다. HTML로 변환 중...${NC}"
+
+    # Python 스크립트 실행
+    python3 scripts/md-to-html.py
+
+    # blog_jack 디렉토리의 HTML 파일을 git에 추가
+    if [ -d "blog_jack" ]; then
+        git add blog_jack/*.html
+        git add blog_jack/metadata.json
+        echo -e "${GREEN}✅ HTML 파일이 커밋에 추가되었습니다${NC}"
+    fi
+else
+    echo -e "${GREEN}ℹ️ 마크다운 변경 없음${NC}"
+fi
+
+exit 0

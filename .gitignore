@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project
+node_modules/
+.env
+.env.local
+
+# Blog (blog_jack은 Desktop에서 별도 관리)
+# blog/ 폴더는 커밋하되, 생성된 HTML은 blog_jack에서만 관리
