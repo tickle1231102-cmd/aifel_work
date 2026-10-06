@@ -1,0 +1,33 @@
+name: CameraFilterApp
+options:
+  bundleIdPrefix: com.example.camerafilter
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    DEVELOPMENT_TEAM: "8JUUR6B9TW"
+    CODE_SIGN_STYLE: Automatic
+targets:
+  CameraFilterApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: CameraFilterApp
+    info:
+      path: CameraFilterApp/Info.plist
+      properties:
+        UILaunchScreen: {}
+        NSCameraUsageDescription: "실시간 카메라 필터를 적용하기 위해 카메라 접근 권한이 필요합니다."
+        NSPhotoLibraryAddUsageDescription: "촬영한 사진을 사진 앱에 저장하기 위해 접근 권한이 필요합니다."
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIRequiredDeviceCapabilities:
+          - armv7
+          - camera-flash
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.camerafilter.CameraFilterApp
+        TARGETED_DEVICE_FAMILY: "1"
+        INFOPLIST_KEY_UILaunchScreen_Generation: "YES"
