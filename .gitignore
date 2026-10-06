@@ -36,3 +36,6 @@ node_modules/
 game-test-0901/
 social-detective-game/
 project_advisory/
+
+# Xcode user state
+xcuserdata/
