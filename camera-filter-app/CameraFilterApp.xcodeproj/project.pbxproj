@@ -1,0 +1,316 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C309CBB63995DB6E3A34897 /* FilmStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BBB819C7B865F502974B0C /* FilmStyle.swift */; };
+		83CBD1A9C0E56A2BF8FA2585 /* FilmFilterEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56844BE32A2E6FBBD5BF049F /* FilmFilterEngine.swift */; };
+		C2B0241E6C1A2BB2DC6F8B69 /* FilmStyleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FA413E8C8990F9C81593E7 /* FilmStyleStore.swift */; };
+		D7E99DF74BACEF27386DDBF2 /* StyleEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EC7139E8C62AA7F2D9E7C3 /* StyleEditorView.swift */; };
+		DB20D311D89E63C665FC768C /* CameraFilterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF40A7B9DEADA3D6D2BB84 /* CameraFilterApp.swift */; };
+		DCDBEE2F23739EAA73CC76B2 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C1A48125185A849C2C1D95 /* CameraManager.swift */; };
+		F3896C295A3DED04B23F29D1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2361A345C98A342B20E83F3E /* ContentView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		09BBB819C7B865F502974B0C /* FilmStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmStyle.swift; sourceTree = "<group>"; };
+		20FA413E8C8990F9C81593E7 /* FilmStyleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmStyleStore.swift; sourceTree = "<group>"; };
+		2361A345C98A342B20E83F3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		362887169CAB71C6016624E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		56844BE32A2E6FBBD5BF049F /* FilmFilterEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmFilterEngine.swift; sourceTree = "<group>"; };
+		81EF40A7B9DEADA3D6D2BB84 /* CameraFilterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFilterApp.swift; sourceTree = "<group>"; };
+		96EC7139E8C62AA7F2D9E7C3 /* StyleEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleEditorView.swift; sourceTree = "<group>"; };
+		A8C1A48125185A849C2C1D95 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		DE33DACD9278FF079DE80B96 /* CameraFilterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraFilterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		708DB88F141494789DEF59C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE33DACD9278FF079DE80B96 /* CameraFilterApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AEB56C832CCDCFC42E551F66 /* CameraFilterApp */ = {
+			isa = PBXGroup;
+			children = (
+				81EF40A7B9DEADA3D6D2BB84 /* CameraFilterApp.swift */,
+				A8C1A48125185A849C2C1D95 /* CameraManager.swift */,
+				2361A345C98A342B20E83F3E /* ContentView.swift */,
+				56844BE32A2E6FBBD5BF049F /* FilmFilterEngine.swift */,
+				09BBB819C7B865F502974B0C /* FilmStyle.swift */,
+				20FA413E8C8990F9C81593E7 /* FilmStyleStore.swift */,
+				362887169CAB71C6016624E2 /* Info.plist */,
+				96EC7139E8C62AA7F2D9E7C3 /* StyleEditorView.swift */,
+			);
+			path = CameraFilterApp;
+			sourceTree = "<group>";
+		};
+		BAC21C48CCE007C2EE5CCDA1 = {
+			isa = PBXGroup;
+			children = (
+				AEB56C832CCDCFC42E551F66 /* CameraFilterApp */,
+				708DB88F141494789DEF59C4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		48CEA77519A1C82137DDF722 /* CameraFilterApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D879140B64ACBDC327528AB8 /* Build configuration list for PBXNativeTarget "CameraFilterApp" */;
+			buildPhases = (
+				35C3D9138F1C8A96726AC3D9 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CameraFilterApp;
+			packageProductDependencies = (
+			);
+			productName = CameraFilterApp;
+			productReference = DE33DACD9278FF079DE80B96 /* CameraFilterApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		891D040B7019C9B16CE4DA95 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = 00B63D8614A2ECFD07B03067 /* Build configuration list for PBXProject "CameraFilterApp" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = BAC21C48CCE007C2EE5CCDA1;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 708DB88F141494789DEF59C4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				48CEA77519A1C82137DDF722 /* CameraFilterApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		35C3D9138F1C8A96726AC3D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB20D311D89E63C665FC768C /* CameraFilterApp.swift in Sources */,
+				DCDBEE2F23739EAA73CC76B2 /* CameraManager.swift in Sources */,
+				F3896C295A3DED04B23F29D1 /* ContentView.swift in Sources */,
+				83CBD1A9C0E56A2BF8FA2585 /* FilmFilterEngine.swift in Sources */,
+				2C309CBB63995DB6E3A34897 /* FilmStyle.swift in Sources */,
+				C2B0241E6C1A2BB2DC6F8B69 /* FilmStyleStore.swift in Sources */,
+				D7E99DF74BACEF27386DDBF2 /* StyleEditorView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		16931CC17CA3742C3C112FCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 8JUUR6B9TW;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4883E64C69B7A7FEC5BA3507 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8JUUR6B9TW;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		72161D4B543B7C6772BE0B21 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3UVJUJQ4D2;
+				INFOPLIST_FILE = CameraFilterApp/Info.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.camerafilter.CameraFilterApp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		AFCDB1B5149AC76DE7CCDA23 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3UVJUJQ4D2;
+				INFOPLIST_FILE = CameraFilterApp/Info.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.camerafilter.CameraFilterApp;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00B63D8614A2ECFD07B03067 /* Build configuration list for PBXProject "CameraFilterApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16931CC17CA3742C3C112FCF /* Debug */,
+				4883E64C69B7A7FEC5BA3507 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D879140B64ACBDC327528AB8 /* Build configuration list for PBXNativeTarget "CameraFilterApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72161D4B543B7C6772BE0B21 /* Debug */,
+				AFCDB1B5149AC76DE7CCDA23 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 891D040B7019C9B16CE4DA95 /* Project object */;
+}

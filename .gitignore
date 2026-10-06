@@ -28,3 +28,14 @@ node_modules/
 
 # Blog (blog_jack은 Desktop에서 별도 관리)
 # blog/ 폴더는 커밋하되, 생성된 HTML은 blog_jack에서만 관리
+
+# oh-my-claudecode state
+.omc/
+
+# Independent repos with their own remotes
+game-test-0901/
+social-detective-game/
+project_advisory/
+
+# Xcode user state
+xcuserdata/
